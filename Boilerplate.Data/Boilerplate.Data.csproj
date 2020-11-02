@@ -19,8 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Boilerplate.Common\Boilerplate.Common.csproj" />
-  </ItemGroup>
-
 </Project>
