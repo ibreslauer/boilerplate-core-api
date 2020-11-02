@@ -5,13 +5,13 @@ using Boilerplate.Data.Models;
 
 namespace Boilerplate.Data.Context
 {
-    public partial class BoilerplateDataContext : DbContext
+    public partial class BoilerplateContext : DbContext
     {
-        public BoilerplateDataContext()
+        public BoilerplateContext()
         {
         }
 
-        public BoilerplateDataContext(DbContextOptions<BoilerplateDataContext> options)
+        public BoilerplateContext(DbContextOptions<BoilerplateContext> options)
             : base(options)
         {
         }

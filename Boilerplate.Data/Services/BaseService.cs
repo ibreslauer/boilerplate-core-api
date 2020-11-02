@@ -11,7 +11,7 @@ namespace Boilerplate.Data.Services
         private readonly Lazy<IMemoryCache> _cache;
         private readonly Lazy<IMapper> _mapper;
 
-        protected BoilerplateDataContext DataContext { get; private set; }
+        protected BoilerplateContext DataContext { get; private set; }
         protected IMemoryCache Cache => _cache.Value;
         protected IMapper Mapper => _mapper.Value;
 
@@ -19,7 +19,7 @@ namespace Boilerplate.Data.Services
         {
             _serviceProvider = serviceProvider;
 
-            DataContext = serviceProvider.GetService(typeof(BoilerplateDataContext)) as BoilerplateDataContext;
+            DataContext = serviceProvider.GetService(typeof(BoilerplateContext)) as BoilerplateContext;
             _cache = new Lazy<IMemoryCache>(() => (IMemoryCache)serviceProvider.GetService(typeof(IMemoryCache)));
             _mapper = new Lazy<IMapper>(() => (IMapper)serviceProvider.GetService(typeof(IMapper)));
         }

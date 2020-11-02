@@ -27,7 +27,7 @@ namespace Boilerplate.API
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BoilerplateDataContext>(options => options
+            services.AddDbContext<BoilerplateContext>(options => options
                 .UseSqlServer(Configuration["ConnectionStrings:Default"])
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                 .EnableSensitiveDataLogging());
