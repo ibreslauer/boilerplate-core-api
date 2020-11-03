@@ -254,7 +254,3 @@ INSERT INTO [dbo].[User] (Username, Email, PasswordHash, IsAdmin, IsDeleted) VAL
 ('pgribbon5h', 'cwallsam5h@statcounter.com', 'bSfbi1', 0, 0),
 ('gmansel5i', 'dnoweak5i@sohu.com', 'sMI8Ndsm0', 1, 0),
 ('coxtaby5j', 'nkerslake5j@nationalgeographic.com', 'DqljAXaNSf', 1, 1);
-
-
-INSERT INTO [dbo].[UserToken] (UserId, Token, DeviceId, IsActive, ExpiryDate, CreatedDate, ModifiedDate) VALUES 
-(1, 'eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJndWVzdEBndWVzdC5jbyIsImJvaWxlcnBsYXRlLnVpZCI6IjEiLCJqdGkiOiJlZTQyZWVmMi05YWY4LTQzNmMtOTNlNy03N2YyMDM0MTczNWYiLCJpc3MiOiJpdmFuYnJlc2xhdWVyLmNvbSIsImF1ZCI6Iml2YW5icmVzbGF1ZXIuY29tIn0.nkWvL_BR599Jcf4TLDJkz4mgfdgJus-jbH4U0s7YnAE', 543210, 1, NULL, GETDATE(), NULL);

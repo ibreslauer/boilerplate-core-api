@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Boilerplate.API.Extensions;
 using Boilerplate.Common.Models;
-using Boilerplate.Data.Services;
+using Boilerplate.Data.Services.Contracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,18 +12,18 @@ namespace Boilerplate.API.Controllers
     [Authorize]
     public class UsersController : BaseController
     {
-        public UsersController(IMapper mapper) : base(mapper)
-        { }
+        private readonly IUserService _userSvc;
+        public UsersController(IUserService userService, IMapper mapper) : base(mapper)
+        {
+            _userSvc = userService;
+        }
 
         [HttpGet]
         public async Task<ActionResult<PagedList<UserModel>>> GetUsers([FromQuery] PagingQueryParams pagingParams)
         {
             try
             {
-                var usersQuery = new UserService(HttpContext.RequestServices)
-                    .GetAll();
-
-                PagedList<UserModel> pagedList = await usersQuery.ToPagedListAsync(pagingParams);
+                PagedList<UserModel> pagedList = await _userSvc.GetAll().ToPagedListAsync(pagingParams);
                 return Ok(pagedList);
             }
             catch (Exception ex)
@@ -38,8 +38,7 @@ namespace Boilerplate.API.Controllers
         {
             try
             {
-                var user = await new UserService(HttpContext.RequestServices)
-                    .GetUserByIdAsync(userId);
+                var user = await _userSvc.GetUserByIdAsync(userId);
 
                 if (user == null) NotFound(new ApiError($"Couldn't find user with Id {userId}"));
 

@@ -3,6 +3,8 @@ using Boilerplate.Data.Context;
 using Boilerplate.Data.Mappings;
 using Boilerplate.API.Auth;
 using Boilerplate.API.Extensions;
+using Boilerplate.Data.Services;
+using Boilerplate.Data.Services.Contracts;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +29,9 @@ namespace Boilerplate.API
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<IUserService, UserService>();
+
             services.AddDbContext<BoilerplateContext>(options => options
                 .UseSqlServer(Configuration["ConnectionStrings:Default"])
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)

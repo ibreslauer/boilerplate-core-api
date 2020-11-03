@@ -1,6 +1,7 @@
 ﻿using Boilerplate.Common.Models;
 using Boilerplate.Common.Exceptions;
 using Boilerplate.Data.Models;
+using Boilerplate.Data.Services.Contracts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using System;
@@ -9,31 +10,31 @@ using System.Threading.Tasks;
 
 namespace Boilerplate.Data.Services
 {
-    public class TokenService : BaseService
+    public class TokenService : BaseService, ITokenService
     {
         public TokenService(IServiceProvider serviceProvider) : base(serviceProvider)
         { }
 
-        public async Task<UserToken> GetActiveTokenAsync(string accessToken, bool useCache = false)
+        public Task<UserToken> GetActiveTokenAsync(string accessToken, bool useCache = false)
         {
             if (useCache && Cache.TryGetValue(accessToken, out UserToken token))
             {
                 return token != null && token.IsActive ?
-                    token :
+                    Task.FromResult(token) :
                     null;
             }
             else
             {
-                return await DataContext.UserToken
+                return DataContext.UserToken
                     .Where(x => x.IsActive && x.Token == accessToken)
                     .AsTracking()
                     .FirstOrDefaultAsync();
             }
         }
 
-        public async Task<UserToken> GetActiveTokenByUserAndDeviceAsync(long userId, string deviceId)
+        public Task<UserToken> GetActiveTokenByUserAndDeviceAsync(long userId, string deviceId)
         {
-            return await DataContext.UserToken
+            return DataContext.UserToken
                 .Where(x => x.IsActive
                             && x.UserId == userId
                             && x.DeviceId == deviceId)

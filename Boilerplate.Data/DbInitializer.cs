@@ -1,6 +1,5 @@
 ﻿using Boilerplate.Data.Context;
 using Boilerplate.Data.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,13 +16,10 @@ namespace Boilerplate.Data
                 return; // DB has been seeded already
             }
 
-            var defaultUser = new User { Username = "guest", Email = "guest@guest.co", PasswordHash = "guest", IsAdmin = true, IsDeleted = false };
-            defaultUser.UserToken.Add(new UserToken { User = defaultUser, Token = "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJndWVzdEBndWVzdC5jbyIsImJvaWxlcnBsYXRlLnVpZCI6IjEiLCJqdGkiOiJlZTQyZWVmMi05YWY4LTQzNmMtOTNlNy03N2YyMDM0MTczNWYiLCJpc3MiOiJpdmFuYnJlc2xhdWVyLmNvbSIsImF1ZCI6Iml2YW5icmVzbGF1ZXIuY29tIn0.nkWvL_BR599Jcf4TLDJkz4mgfdgJus-jbH4U0s7YnAE", DeviceId = Guid.NewGuid().ToString(), CreatedDate = DateTime.Now, IsActive = true });
-
             #region Test users
             var users = new List<User>
             {
-                defaultUser,
+                new User { Username = "guest", Email = "guest@guest.co", PasswordHash = "guest", IsAdmin = true, IsDeleted = false },
                 new User { Username = "minch", Email = "bminchinton0@blogspot.com", PasswordHash = "qsk3", IsAdmin = true, IsDeleted = false },
                 new User { Username = "cecca", Email = "ceccersley1@state.tx.us", PasswordHash = "Mnh12", IsAdmin = false, IsDeleted = false },
                 new User { Username = "jollo", Email = "jollarenshaw2@4shared.com", PasswordHash = "d4a6", IsAdmin = true, IsDeleted = false },
